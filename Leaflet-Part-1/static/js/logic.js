@@ -46,10 +46,10 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
     }
 
     // Create the legend
-    var legend = L.control({ position: 'bottomleft' });
+    var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'legend');
-      div.innerHTML += '<h4>Depth Legend</h4>';
+      div.innerHTML += '<h4>Earthquake Depth Legend</h4>';
       let depthRanges = ['> 90 km', '> 70 km', '> 50 km', '> 30 km', '> 10 km', '<= 10 km'];
       let colors = ['#FF0000', '#FFA500', '#FFFF00', '#ADD8E6', '#90EE90', '#006400'];
       for (let i = 0; i < depthRanges.length; i++) {
@@ -60,3 +60,4 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
   
     legend.addTo(myMap);
   });
+  

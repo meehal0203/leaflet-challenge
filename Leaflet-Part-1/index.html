@@ -19,6 +19,16 @@
     #map {
       height: 600px;
     }
+    #map-title {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+
     .legend {
       position: absolute;
       bottom: 10px;
@@ -44,6 +54,7 @@
 <body>
 
   <!-- The div that holds our map -->
+  <div id="map-title">7 Day Global Earthquake Map</div>
   <div id="map"></div>
 
   <!-- Leaflet JS -->

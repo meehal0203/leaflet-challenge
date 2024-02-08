@@ -20,5 +20,10 @@ I visited the USGS earthquake [website](https://earthquake.usgs.gov/earthquakes/
 
 * I have given the map a legend that will provide context for map data.
 
+### Below is the map plotting all earthquakes in a 7 day span around the world showing depth, magnitude and location information:
+
+![image](https://github.com/meehal0203/leaflet-challenge/assets/146681542/d98dc235-5cba-43a7-8b99-57a72c58b12d)
+
+
 
 

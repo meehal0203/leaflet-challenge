@@ -1,5 +1,5 @@
 
-  
+
 // Create my map variable
 let myMap = L.map('map').setView([0, 0], 2);
 
@@ -22,7 +22,7 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
 
       // Create a circle marker for each earthquake
       L.circleMarker([coordinates[1], coordinates[0]], {
-        radius: Math.sqrt(magnitude) * 3, 
+        radius: Math.sqrt(magnitude) * 3,
         fillColor: getColor(depth),
         color: "#000",
         weight: 1,
@@ -48,17 +48,36 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojso
     }
 
     // Create the legend
-    let legend = L.control({ position: 'bottomleft'});
+    var legend = L.control({ position: 'bottomright' });
+
     legend.onAdd = function (map) {
-      let div = L.DomUtil.create('div', 'legend');
-      div.innerHTML += '<h4 style="font-size: 10px;">Earthquake Depth Legend</h4>'; // Adjust font-size here
-      let depthRanges = ['> 90 km', '> 70 km', '> 50 km', '> 30 km', '> 10 km', '<= 10 km'];
+
+      var div = L.DomUtil.create('div', 'info legend')
+      let grades = [0, 10, 30, 50, 70, 90]
       let colors = ['#FF0000', '#FFA500', '#FFFF00', '#ADD8E6', '#90EE90', '#006400'];
-      for (let i = 0; i < depthRanges.length; i++) {
-        div.innerHTML += `<div class="legend-item" style="font-size: 12px;"><span class="circle" style="background-color:${colors[i]}"></span> Depth ${depthRanges[i]}</div>`; // Adjust font-size here
+      div.innerHTML = "<h1><center>Depth</center></h1>" ;
+      // loop through our density intervals and generate a label with a colored square for each interval
+      for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+          '<i style="background:' + colors[i] + '"></i> ' +
+          grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
       }
+
       return div;
     };
-  
+
     legend.addTo(myMap);
+    // let legend = L.control({ position: 'bottomleft'});
+    // legend.onAdd = function (map) {
+    //   let div = L.DomUtil.create('div', 'legend');
+    //   div.innerHTML += '<h4 style="font-size: 5px;">Earthquake Depth Legend</h4>'; // Adjust font-size here
+    //   let depthRanges = ['> 90 km', '> 70 km', '> 50 km', '> 30 km', '> 10 km', '<= 10 km'];
+    //   let colors = ['#FF0000', '#FFA500', '#FFFF00', '#ADD8E6', '#90EE90', '#006400'];
+    //   for (let i = 0; i < depthRanges.length; i++) {
+    //     div.innerHTML += `<div class="legend-item" style="font-size: 2px;"><span class="circle" style="background-color:${colors[i]}"></span> Depth ${depthRanges[i]}</div>`; // Adjust font-size here
+    //   }
+    //   return div;
+    // };
+
+    // legend.addTo(myMap);
   });
